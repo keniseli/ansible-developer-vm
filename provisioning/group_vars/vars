@@ -1,0 +1,22 @@
+# Fill in your usernames and passwords.
+# vault_gituser: <git user>
+# vault_gitpassword: <git password>
+
+# If You'd like to use a vault, do the following:
+# 1. Create a file group_vars/vault
+# 2. Move the lines 2+3 to the vault (uncommented)
+# 3. ansible-vault encrypt /path/to/vault and enter a password
+# 4. Optionally: type the password into a file called vaultpassword, place it next to the playbook.yml
+#       as a result, the provisioning will not ask you for the vaultpassword. Since this blueprint is for
+#       provisioning developer vms, that should not be a problem and is done simply for automation. This 
+#       strategy is probably not the best on systems you don't know all accesses.
+# 5. Comment out the following lines.
+vault_gituser: 
+vault_gitpassword: 
+vault_registryuser: 
+vault_registrypassword: 
+
+variable_from_group_vars: ansible is awesome
+git_checkout_path: ~/developer-vm
+git_repository_url: github.com/keniseli/ansible-developer-vm
+git_checkout_version: HEAD

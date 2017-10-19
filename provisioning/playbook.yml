@@ -1,0 +1,31 @@
+- hosts: web
+  roles:
+    - { role: wtanaka.git }
+
+  vars_files:
+    - group_vars/vars
+    - group_vars/vault
+
+  environment:
+    SAMPLE_ENVIRONMENT_VARIABLE: "{{ variable_from_group_vars }}"
+    SECOND_SAMPLE_ENVIRONMENT_VARIABLE: "ams rocks!"
+
+  tasks:
+
+    # Only clone if directory does not exist yet
+    - name: Check already cloned
+      find: paths="{{ git_checkout_path }}" file_type=directory patterns="*"
+      register: already_cloned
+
+    # Clone into the repository
+    - name: Clone
+      git:
+        repo: "https://{{ vault_gituser }}:{{ vault_gitpassword }}@{{ git_repository_url }}"
+        version: "{{ git_checkout_version }}"
+        dest: "{{ git_checkout_path }}"
+        accept_hostkey: yes
+      when: already_cloned.matched|int == 0
+
+    # Do some other fancy stuff
+    - name: fancy stuff
+      shell: echo "Can you fly a TIE fighter? I can fly anything!" > ~/README
