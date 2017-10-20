@@ -5,8 +5,9 @@ A blueprint on how developer VM's can be provisioned from any host with Vagrant 
 
 ## Prerequisites
 1. Have vagrant installed
-2. Have some space on your machine left. 5 GB will be more than sufficient. 
-3. Internet connection
+2. Have virtualbox installed
+3. Have some space on your machine left. 5 GB will be more than sufficient. 
+4. Internet connection
 
 ## Provision machine
 1. Adjust the provisioning in the directory `provisioning` to your needs (add roles, extend playbook, whatever...)
