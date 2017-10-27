@@ -38,13 +38,14 @@ provision() {
     rm -rf /tmp/provisioning
     cp -r /vagrant/provisioning /tmp/provisioning
     cd /tmp/provisioning
-    chmod -x hosts
+    chmod -x inventory
     export ANSIBLE_HOST_KEY_CHECKING=False
+    ansible-galaxy install -r requirements.yml
     if [[ -f vaultpassword ]]; then
         chmod -x vaultpassword
         step "running playbook with vault..."
         sshpass -p vagrant ansible-playbook playbook.yml -u vagrant --inventory-file inventory --ask-pass --ssh-extra-args='-o StrictHostKeyChecking=no' --vault-password-file vaultpassword
-    else 
+    else
         step "running playbook without vault..."
         sshpass -p vagrant ansible-playbook playbook.yml -u vagrant --inventory-file inventory --ask-pass --ssh-extra-args='-o StrictHostKeyChecking=no'
     fi
