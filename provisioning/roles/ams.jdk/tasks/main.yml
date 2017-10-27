@@ -5,7 +5,7 @@
     update_cache: yes
    become: true
 
- - name: Install java version
+ - name: Install Java
    apt:
     name: "{{ java_package_name }}={{ java_version }}"
     state: present
@@ -15,10 +15,9 @@
    shell: dpkg --print-architecture
    register: architecture
 
-
- #- name: Set the JAVA_HOME environment variable for all users
- - lineinfile:
-    dest: /etc/bash.bashrc
-    state: present
-    line: export JAVA_HOME="/usr/lib/jvm/{{ java_package_name }}-{{ architecture.stdout }}/"
+ - name: Set JAVA_HOME environment variable
+   template:
+      src: java_home.sh.j2
+      dest: /etc/profile.d/java_home.sh
+      mode: 0644
    become: true
