@@ -1,0 +1,2 @@
+[web]
+localhost   host_key_checking=False

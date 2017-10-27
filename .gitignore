@@ -1,3 +1,4 @@
 .vagrant
 provisioning/group_vars/vault
+provisioning/playbook.retry
 vaultpassword
