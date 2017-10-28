@@ -1,28 +1,31 @@
-- hosts: web
+---
+#
+# Ansible playbook for a provisioning a developer VM
+#
+- hosts: developmentVM
 
   vars_files:
     - group_vars/vars
 
   roles:
     - role: ams.jdk
-    #- role: geerlingguy.git
-    - role: wtanaka.git
-    #- role: geerlingguy.nodejs
-    #- role: geerlingguy.docker
-    #- role: gantsign.maven
-    #- role: gantsign.postman
-    #- role: gantsign.intellij
-    #  intellij_default_maven_home: '/opt/maven/apache-maven-3.5.0'
-    #  intellij_default_jdk_home: '{{ java_home }}'
-    #  users:
-    #    - username: vagrant
-    #      intellij_jdks:
-    #        - name: '1.8'
-    #          home: '/usr/lib/jvm/java-8-openjdk-amd64'
-    #      intellij_default_jdk: '1.8'
-    #      intellij_codestyles:
-    #        - name: GoogleStyle
-    #          url: 'https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml'
-    #      intellij_active_codestyle: GoogleStyle
-    #      intellij_plugins:
-    #        - CheckStyle-IDEA
+    - role: geerlingguy.git
+    - role: geerlingguy.nodejs
+    - role: geerlingguy.docker
+    - role: gantsign.maven
+    - role: gantsign.postman
+    - role: gantsign.intellij
+      intellij_default_maven_home: '/opt/maven/apache-maven-3.5.0'
+      intellij_default_jdk_home: '{{ java_home }}'
+      users:
+        - username: vagrant
+          intellij_jdks:
+            - name: '1.8'
+              home: '/usr/lib/jvm/java-8-openjdk-amd64'
+          intellij_default_jdk: '1.8'
+          intellij_codestyles:
+            - name: GoogleStyle
+              url: 'https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml'
+          intellij_active_codestyle: GoogleStyle
+          intellij_plugins:
+            - CheckStyle-IDEA

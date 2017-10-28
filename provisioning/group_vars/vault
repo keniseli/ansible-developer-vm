@@ -1,0 +1,18 @@
+# ----------------------------------------------------------------------------
+# If You'd like to use a vault, do the following:
+# ----------------------------------------------------------------------------
+# 1. Add all the variables that should be encrypted inside this file
+# 2. Open a shell and navigate into the root directory of this project
+# 3. Run '$ ansible-vault encrypt /provisioning/group_vars/vault'
+# 4. Enter your desired vault password and confirm it
+# 5. Once you start provisioning, Ansible will ask for your password
+#
+# Optional: To avoid being asked for the password, simply create a new file with
+# the name of 'vaultpassword' and place it next to the playbook.yml. Then place
+# your password inside this file and save. From now on Ansible will not ask for
+# your password again.
+#
+# Examples:
+#
+# vault_gituser: <git user>
+# vault_gitpassword: <git password>

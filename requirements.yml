@@ -1,0 +1,11 @@
+---
+#
+# The following Ansible-Galaxy roles will be automatically downloaded and installed if you run '$ vagrant up'
+# or '$ vagrant provision'. If you want to add another role just add it to the existing roles below.
+#
+- src: geerlingguy.git
+- src: geerlingguy.nodejs
+- src: geerlingguy.docker
+- src: gantsign.maven
+- src: gantsign.postman
+- src: gantsign.intellij

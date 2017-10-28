@@ -1,7 +1,0 @@
----
-- src: geerlingguy.git
-- src: geerlingguy.nodejs
-- src: geerlingguy.docker
-- src: gantsign.maven
-- src: gantsign.postman
-- src: gantsign.intellij

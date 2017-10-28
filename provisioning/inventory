@@ -1,2 +1,1 @@
-[web]
-localhost   host_key_checking=False
+developmentVM host_key_checking=False
