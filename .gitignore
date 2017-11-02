@@ -1,3 +1,4 @@
-.vagrant
-provisioning/group_vars/vault
-vaultpassword
+/.idea/
+/.vagrant/
+/provisioning/playbook.retry
+/provisioning/vaultpassword

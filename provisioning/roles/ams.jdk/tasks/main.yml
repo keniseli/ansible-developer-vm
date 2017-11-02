@@ -1,0 +1,23 @@
+---
+# tasks file for ams.javasdk
+ - name: Update package index
+   apt:
+    update_cache: yes
+   become: true
+
+ - name: Install Java
+   apt:
+    name: "{{ java_package_name }}={{ java_version }}"
+    state: present
+   become: true
+
+ - name: Register system architecture
+   shell: dpkg --print-architecture
+   register: architecture
+
+ - name: Set JAVA_HOME environment variable
+   template:
+      src: java_home.sh.j2
+      dest: /etc/profile.d/java_home.sh
+      mode: 0644
+   become: true

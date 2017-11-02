@@ -1,0 +1,11 @@
+---
+# defaults file for ams.javasdk
+
+#The package name that is used to download the jdk via 'apt' package manager
+java_package_name: openjdk-8-jdk
+
+#The version of the java package that is going to be installed
+java_version: 8u131-b11-2ubuntu1.16.04.3
+
+#Path to the java installation directory
+java_home: /usr/lib/jvm/{{ java_package_name }}-{{ architecture.stdout }}/

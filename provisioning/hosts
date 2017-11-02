@@ -1,4 +1,0 @@
-[web]
-192.168.33.13   host_key_checking=False
-[db]
-192.168.33.14   host_key_checking=False
