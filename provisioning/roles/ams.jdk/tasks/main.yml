@@ -1,15 +1,22 @@
 ---
 # tasks file for ams.javasdk
+ - name: Check if java is installed
+   command: which java
+   ignore_errors: True
+   register: installationCheck
+
  - name: Update package index
    apt:
     update_cache: yes
    become: true
+   when: installationCheck|failed
 
  - name: Install Java
    apt:
     name: "{{ java_package_name }}={{ java_version }}"
     state: present
    become: true
+   when: installationCheck|failed
 
  - name: Register system architecture
    shell: dpkg --print-architecture
@@ -21,3 +28,4 @@
       dest: /etc/profile.d/java_home.sh
       mode: 0644
    become: true
+   when: installationCheck|failed
