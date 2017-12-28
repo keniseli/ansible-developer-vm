@@ -56,9 +56,10 @@ install_roles_from_ansible_galaxy(){
 provision() {
     step "preparing playbook..."
 
-    cd /vagrant/provisioning
+    mkdir -p /tmp/provisioning
+    cp -R /vagrant/provisioning/* /tmp/provisioning/
+    cd /tmp/provisioning
     chmod -x inventory
-
 
     if [[ -f vaultpassword ]]; then
         chmod -x vaultpassword
