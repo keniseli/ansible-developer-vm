@@ -2,3 +2,5 @@
 /.vagrant/
 /provisioning/playbook.retry
 /provisioning/vaultpassword
+/ansible-developer-vm.iml
+/.circleci/

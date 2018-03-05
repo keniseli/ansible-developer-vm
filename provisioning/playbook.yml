@@ -1,31 +1,119 @@
 ---
-#
-# Ansible playbook for a provisioning a developer VM
-#
+# ===============================================================================================
+# Ansible playbook for a provisioning a developer VM                                            #
+#                                                                                               #
+# NOTE:                                                                                         #
+# Whenever you are using roles from Ansible Galaxy (https://galaxy.ansible.com/) make sure      #
+# to include the role in the file requirements.yml within the root directory of this repo       #
+# ===============================================================================================
+
 - hosts: developmentVM
 
   vars_files:
     - group_vars/vars
 
   roles:
-    - role: ams.jdk
+
+    # ==========================================================================================================
+    # Author:           geerlingguy
+    # Documentation:    https://galaxy.ansible.com/geerlingguy/git/
+    # Description:      Installation of the popular version control system 'Git'
+    # ==========================================================================================================
     - role: geerlingguy.git
+      git_version: "2.16.2"
+      # If git is already installed at and older version, force a new source build.
+      # Only applies if git_install_from_source is true.
+      git_install_from_source: false
+
+    # ==========================================================================================================
+    # Author:           geerlingguy
+    # Documentation:    https://galaxy.ansible.com/geerlingguy/nodejs/
+    # Description:      Installation of Node Package Manager (npm)
+    # ==========================================================================================================
     - role: geerlingguy.nodejs
+      nodejs_version: "8.x"
+      #nodejs_npm_global_packages:
+      #  - name: jslint
+      #    version: 0.9.3
+      #  - name: node-sass
+
+    # ==========================================================================================================
+    # Author:           geerlingguy
+    # Galaxy URL:       https://galaxy.ansible.com/geerlingguy/docker/
+    # Description:      Installation of Docker (operating-system-level virtualization)
+    # ==========================================================================================================
     - role: geerlingguy.docker
+      docker_edition: 'ce'
+      docker_package: "docker-{{ docker_edition }}"
+      docker_package_state: latest
+      docker_install_compose: true
+      docker_compose_version: "1.19.0"
+      docker_compose_path: /usr/local/bin/docker-compose
+      docker_apt_release_channel: stable
+      docker_apt_repository: "deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"
+      docker_yum_repo_url: https://download.docker.com/linux/centos/docker-{{ docker_edition }}.repo
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/maven/
+    # Description:       Installation of Maven (build automation tool)
+    # ==========================================================================================================
     - role: gantsign.maven
+      maven_version: '3.5.0'
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/postman/
+    # Description:       Installation of the popular REST Client 'Postman'
+    # ==========================================================================================================
     - role: gantsign.postman
-    - role: gantsign.intellij
-      intellij_default_maven_home: '/opt/maven/apache-maven-3.5.0'
-      intellij_default_jdk_home: '{{ java_home }}'
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/atom/
+    # Description:       Installation of the popular open-source text editor 'Atom'
+    # ==========================================================================================================
+    - role: gantsign.atom
       users:
         - username: vagrant
-          intellij_jdks:
-            - name: '1.8'
-              home: '/usr/lib/jvm/java-8-openjdk-amd64'
-          intellij_default_jdk: '1.8'
-          intellij_codestyles:
-            - name: GoogleStyle
-              url: 'https://raw.githubusercontent.com/google/styleguide/gh-pages/intellij-java-google-style.xml'
-          intellij_active_codestyle: GoogleStyle
-          intellij_plugins:
-            - CheckStyle-IDEA
+          atom_packages:
+            - minimap
+            - linter
+            - atom-beautify
+            - file-icons
+
+    # ==========================================================================================================
+    # Author:            jdauphant
+    # Documentation:     https://galaxy.ansible.com/jdauphant/sublimetext/
+    # Description:       Installation of sublimetext3, a popular commercial editor
+    # ==========================================================================================================
+    - role: jdauphant.sublimetext
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/java/
+    # Description:       Installation of Oracles Java Development Kit (JDK)
+    # ==========================================================================================================
+    - role: gantsign.java
+      java_version: '8'  # Role will download and install the jdk's latest version if you dont specify it explicitly
+      java_license_declaration: 'I accept the "Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX" under the terms at http://www.oracle.com/technetwork/java/javase/terms/license/index.html'
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/intellij/
+    # Description:       Installation of Jetbrain's popular IDE IntelliJ
+    # IMPORTANT:         This role requires an installation of Oracles JDK
+    # ==========================================================================================================
+    - role: gantsign.intellij
+      intellij_edition: ultimate
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/keyboard/
+    # Description:       Role for configuring keyboard layout etc.
+    # ==========================================================================================================
+    - role: gantsign.keyboard
+      # European keyboard model (pc105 is widely used outside Europe as well)
+      keyboard_model: pc105
+      # Layout for Great Britain / United Kingdom
+      keyboard_layout: de

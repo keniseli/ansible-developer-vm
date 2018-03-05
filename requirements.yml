@@ -6,6 +6,10 @@
 - src: geerlingguy.git
 - src: geerlingguy.nodejs
 - src: geerlingguy.docker
+- src: jdauphant.sublimetext
 - src: gantsign.maven
 - src: gantsign.postman
+- src: gantsign.atom
+- src: gantsign.java
 - src: gantsign.intellij
+- src: gantsign.keyboard
