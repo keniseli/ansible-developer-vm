@@ -13,3 +13,4 @@
 - src: gantsign.java
 - src: gantsign.intellij
 - src: gantsign.keyboard
+- src: gantsign.visual-studio-code

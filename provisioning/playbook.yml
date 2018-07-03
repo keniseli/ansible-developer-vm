@@ -117,3 +117,10 @@
       keyboard_model: pc105
       # Layout for Great Britain / United Kingdom
       keyboard_layout: de
+
+    # ==========================================================================================================
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/visual-studio-code/
+    # Description:       Installation of Visual Studio Code
+    # ==========================================================================================================
+    - role: gantsign.visual-studio-code
