@@ -10,8 +10,7 @@ dependencies:
   cache_directories:
     - ~/.vagrant.d
   pre:
-    # test with https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.deb?_ga=2.182765733.2082164993.1509976442-2109519956.1479934767
-    - wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.4_x86_64.deb
+    - wget https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
     - sudo dpkg -i vagrant_1.7.4_x86_64.deb
 
 test:
@@ -39,8 +38,8 @@ jobs:
       - run:
           name: provision using vagrant
           command: |
-            wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb
-            sudo dpkg -i vagrant_1.6.5_x86_64.deb
+            wget https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
+            sudo dpkg -i vagrant_2.1.2_x86_64.deb
             vagrant up
       - save_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
