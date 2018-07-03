@@ -48,7 +48,8 @@ check_and_install_sshpass() {
 }
 
 # This is installing all specified roles from 'requirements.yml' within the root directory
-install_roles_from_ansible_galaxy(){
+# --force so that the newest version of the tools are being downloaded
+install_roles_from_ansible_galaxy() {
     step "installing roles from ansible-galaxy ..."
    ansible-galaxy install --force -r /vagrant/requirements.yml
 }
