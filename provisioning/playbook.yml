@@ -54,6 +54,16 @@
       docker_yum_repo_url: https://download.docker.com/linux/centos/docker-{{ docker_edition }}.repo
 
     # ==========================================================================================================
+    # Author:            geerlingguy
+    # Documentation:     https://galaxy.ansible.com/geerlingguy/java/
+    # Description:       Installation of Oracles Java Development Kit (JDK)
+    # ==========================================================================================================
+    - role: geerlingguy.java
+      java_version: '8'  # Role will download and install the jdk's latest version if you dont specify it explicitly
+      java_packages:
+        - openjdk-8-jdk
+
+    # ==========================================================================================================
     # Author:            gantsign
     # Documentation:     https://galaxy.ansible.com/gantsign/maven/
     # Description:       Installation of Maven (build automation tool)
@@ -88,15 +98,6 @@
     # Description:       Installation of sublimetext3, a popular commercial editor
     # ==========================================================================================================
     - role: jdauphant.sublimetext
-
-    # ==========================================================================================================
-    # Author:            gantsign
-    # Documentation:     https://galaxy.ansible.com/gantsign/java/
-    # Description:       Installation of Oracles Java Development Kit (JDK)
-    # ==========================================================================================================
-    - role: gantsign.java
-      java_version: '8'  # Role will download and install the jdk's latest version if you dont specify it explicitly
-      java_license_declaration: 'I accept the "Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX" under the terms at http://www.oracle.com/technetwork/java/javase/terms/license/index.html'
 
     # ==========================================================================================================
     # Author:            gantsign
