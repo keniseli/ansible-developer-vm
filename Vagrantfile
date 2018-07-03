@@ -7,7 +7,6 @@ Vagrant.configure("2") do |config|
   # This is the dev VM which is going to be provisioned. Only add basic stuff here!
   # Installation and configuration is to be done via playbook
   config.vm.define "devvm" do |devvm|
-    devvm.vm.network :private_network, ip: "192.168.33.13"
     devvm.vm.hostname = "developmentVM"
   end
 
@@ -15,5 +14,10 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell,
     privileged: true,
     path: "run-ansible-playbook.sh"
+
+  # Verify the provisioning
+  config.vm.provision :shell,
+  privileged: true,
+  path: "verify-provisioning.sh"
 
 end
