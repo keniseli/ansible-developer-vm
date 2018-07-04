@@ -21,6 +21,7 @@ jobs:
       - run:
           name: provision using vagrant
           command: |
+            apt-get update
             wget https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
             dpkg -i vagrant_2.1.2_x86_64.deb
             apt-get install virtualbox --fix-missing
