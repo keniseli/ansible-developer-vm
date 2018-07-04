@@ -18,7 +18,7 @@ step() {
 
 check_and_install_serverspec() {
     step "Installing ruby..."
-    apt-get install ruby
+    apt-get install ruby -y
     gem install serverspec
 }
 
