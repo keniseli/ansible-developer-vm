@@ -17,10 +17,12 @@ Vagrant.configure("2") do |config|
     override.ssh.port = 22
     docker.image = "tknerr/baseimage-ubuntu:16.04"
     docker.has_ssh = true
+    config.ssh.username = "vagrant"
+    config.ssh.password = "vagrant"
     docker.create_args = [
       "-d",
     ]
-    override.ssh.host = ´docker inspect -f "\{\{range .NetworkSettings.Networks\}\}\{\{.IPAddress\}\}\{\{end\}\}" testdevvm´
+    override.ssh.host = %x{docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" testdevvm}
   end
 
   config.vm.provider "vmware_desktop" do |v|
