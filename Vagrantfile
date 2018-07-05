@@ -2,18 +2,19 @@
 # Rather change the playbook.yml in the directory provisioning.
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "mpbauer/ubuntu1804-desktop"
+  config.vm.box = "tknerr/baseimage-ubuntu-16.04"
 
-  config.vm.provider "virtualbox" do |vbox|
+  config.vm.provider "virtualbox" do |vbox, override|
     vbox.gui = true
     vbox.memory = 16384
     vbox.cpus = 4
+    override.vm.box = "mpbauer/ubuntu1804-desktop"
   end
 
   config.vm.provider "docker" do |docker, override|
     #config.vm.box = "tknerr/baseimage-ubuntu-16.04"
     #config.vm.box_version = "1.0.0"
-    docker.image = "ubuntu/18.04"
+    #docker.image = "ubuntu/18.04"
   end
 
   config.vm.provider "vmware_desktop" do |v|
