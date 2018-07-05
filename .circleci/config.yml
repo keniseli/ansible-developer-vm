@@ -14,11 +14,6 @@ dependencies:
     - sudo dpkg -i vagrant_1.7.4_x86_64.deb
     - vagrant plugin install docker
 
-test:
-  override:
-    - vagrant up --provider=docker
-    
-
 version: 2
 jobs:
   build:
@@ -36,13 +31,14 @@ jobs:
       - checkout
       - restore_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
+      - setup_remote_docker
       - run:
           name: provision using vagrant
           command: |
             wget https://releases.hashicorp.com/vagrant/2.1.2/vagrant_2.1.2_x86_64.deb
             sudo dpkg -i vagrant_2.1.2_x86_64.deb
             vagrant plugin install docker
-            vagrant up
+            vagrant up --provider=docker
       - save_cache:
           key: deps1-{{ .Branch }}-{{ checksum "requirements/dev.txt" }}
           paths:
