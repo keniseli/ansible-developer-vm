@@ -12,24 +12,19 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "docker" do |docker, override|
-    override.ssh.host = "testdevvm"
+    override.vm.hostname = "testdevvm"
+    docker.name = "testdevvm"
     override.ssh.port = 22
     docker.image = "tknerr/baseimage-ubuntu:16.04"
     docker.has_ssh = true
     docker.create_args = [
       "-d",
     ]
-    docker.name = "testdevvm"
+    override.ssh.host = ´docker inspect -f "\{\{range .NetworkSettings.Networks\}\}\{\{.IPAddress\}\}\{\{end\}\}" testdevvm´
   end
 
   config.vm.provider "vmware_desktop" do |v|
     v.gui = true
-  end
-
-  # This is the dev VM which is going to be provisioned. Only add basic stuff here!
-  # Installation and configuration is to be done via playbook
-  config.vm.define "devvm" do |devvm|
-    devvm.vm.hostname = "developmentVM"
   end
 
   # Run ansible playbook
