@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
     #config.vm.box = "tknerr/baseimage-ubuntu-16.04"
     #config.vm.box_version = "1.0.0"
     #docker.image = "ubuntu/18.04"
+    docker.has_ssh = true
   end
 
   config.vm.provider "vmware_desktop" do |v|
