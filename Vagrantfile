@@ -21,7 +21,6 @@ Vagrant.configure("2") do |config|
     docker.create_args = [
       "-d",
     ]
-    override.ssh.host = %x{docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" testdevvm}
   end
 
   config.vm.provider "vmware_desktop" do |v|
