@@ -12,10 +12,14 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "docker" do |docker, override|
-    #config.vm.box = "tknerr/baseimage-ubuntu-16.04"
-    #config.vm.box_version = "1.0.0"
-    #docker.image = "ubuntu/18.04"
+    override.ssh.host = "testdevvm"
+    override.ssh.port = 22
+    docker.image = "tknerr/baseimage-ubuntu:16.04"
     docker.has_ssh = true
+    docker.create_args = [
+      "-d",
+    ]
+    docker.name = "testdevvm"
   end
 
   config.vm.provider "vmware_desktop" do |v|
