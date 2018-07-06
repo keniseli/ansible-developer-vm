@@ -12,10 +12,13 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider "docker" do |docker, override|
+    override.vm.box_version = "1.0.0"
     override.vm.hostname = "testdevvm"
+    override.ssh.port = 22
+    override.ssh.username = vagrant
+    override.ssh.password = vagrant
     docker.name = "testdevvm"
     docker.vagrant_machine = "testdevvm"
-    override.ssh.port = 22
     docker.image = "tknerr/baseimage-ubuntu:16.04"
     docker.has_ssh = true
     docker.create_args = [
