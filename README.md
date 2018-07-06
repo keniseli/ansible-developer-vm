@@ -1,6 +1,7 @@
 # Ansible Developer VM Provisioning
 
 [![Build Status](https://travis-ci.org/keniseli/ansible-developer-vm.svg?branch=master)](https://travis-ci.org/keniseli/ansible-developer-vm)
+
 A blueprint on how developer VM's can be provisioned from any host with Vagrant installed. Let's make us developers' lives easier!
 
 ## Prerequisites
