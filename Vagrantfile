@@ -2,12 +2,26 @@
 # Rather change the playbook.yml in the directory provisioning.
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "tknerr/baseimage-ubuntu-16.04"
 
-  config.vm.provider "virtualbox" do |vbox, override|
-    vbox.gui = true
-    vbox.memory = 16384
-    vbox.cpus = 4
+  # This is the dev VM which is going to be provisioned. Only add basic stuff here!
+  # Installation and configuration is to be done via playbook
+  config.vm.define "devvm" do |devvm|
+    devvm.vm.network :private_network, type: "dhcp"
+    devvm.vm.hostname = "developmentVM"
+    devvm.vm.box = "tknerr/baseimage-ubuntu-16.04"
+  end
+
+  config.vm.provider "virtualbox" do |v, override|
+    v.gui = true
+    v.memory = 16384
+    v.cpus = 4
+    override.vm.box = "mpbauer/ubuntu1804-desktop"
+  end
+
+  config.vm.provider "vmware_desktop" do |v, override|
+    v.gui = true
+    v.memory = 16384
+    v.cpus = 4
     override.vm.box = "mpbauer/ubuntu1804-desktop"
   end
 
@@ -26,10 +40,6 @@ Vagrant.configure("2") do |config|
     ]
   end
 
-  config.vm.provider "vmware_desktop" do |v|
-    v.gui = true
-  end
-
   # Run ansible playbook
   config.vm.provision :shell,
     privileged: true,
@@ -41,3 +51,4 @@ Vagrant.configure("2") do |config|
     path: "verify-provisioning.sh"
 
 end
+

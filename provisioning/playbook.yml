@@ -14,18 +14,12 @@
 
   roles:
 
-    # ==========================================================================================================
-    # Author:           geerlingguy
-    # Documentation:    https://galaxy.ansible.com/geerlingguy/git/
-    # Description:      Installation of the popular version control system 'Git'
-    # ==========================================================================================================
-    - role: geerlingguy.git
-      git_version: "2.16.2"
-      # If git is already installed at and older version, force a new source build.
-      # Only applies if git_install_from_source is true.
-      git_install_from_source: false
+#**************************************************************************************************************#
+# JDKs / Runtime Environments                                                                                  #
+#**************************************************************************************************************#
 
     # ==========================================================================================================
+    # Software:         Node.js
     # Author:           geerlingguy
     # Documentation:    https://galaxy.ansible.com/geerlingguy/nodejs/
     # Description:      Installation of Node Package Manager (npm)
@@ -38,6 +32,66 @@
       #  - name: node-sass
 
     # ==========================================================================================================
+    # Software:          Java JDK
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/java/
+    # Description:       Installation of Oracles Java Development Kit (JDK)
+    # ==========================================================================================================
+    - role: gantsign.java
+      java_version: '8'
+      java_is_default_installation: yes
+      java_fact_group_name: java
+      java_license_declaration: 'I accept the "Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX" under the terms at http://www.oracle.com/technetwork/java/javase/terms/license/index.html'
+
+      # You can install multiple versions of Java by copying this role with a different version
+    - role: gantsign.java
+      java_version: '10'
+      java_is_default_installation: no
+      java_fact_group_name: java
+      java_license_declaration: 'I accept the "Oracle Binary Code License Agreement for the Java SE Platform Products and JavaFX" under the terms at http://www.oracle.com/technetwork/java/javase/terms/license/index.html'
+
+
+#**************************************************************************************************************#
+# Build tools                                                                                                  #
+#**************************************************************************************************************#
+
+    # ==========================================================================================================
+    # Software:          Maven
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/maven/
+    # Description:       Installation of Maven (build automation tool)
+    # ==========================================================================================================
+    - role: gantsign.maven
+      maven_version: '3.5.0'
+
+#**************************************************************************************************************#
+# Other software                                                                                               #
+#**************************************************************************************************************#
+
+    # ==========================================================================================================
+    # Software:         Git
+    # Author:           geerlingguy
+    # Documentation:    https://galaxy.ansible.com/geerlingguy/git/
+    # Description:      Installation of the popular version control system 'Git'
+    # ==========================================================================================================
+    - role: geerlingguy.git
+      git_version: "2.16.2"
+      # If git is already installed at and older version, force a new source build.
+      # Only applies if git_install_from_source is true.
+      git_install_from_source: false
+
+
+    # ==========================================================================================================
+    # Software:          Postman
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/postman/
+    # Description:       Installation of the popular REST Client 'Postman'
+    # ==========================================================================================================
+    - role: gantsign.postman
+
+
+    # ==========================================================================================================
+    # Software:         Docker
     # Author:           geerlingguy
     # Galaxy URL:       https://galaxy.ansible.com/geerlingguy/docker/
     # Description:      Installation of Docker (operating-system-level virtualization)
@@ -54,31 +108,33 @@
       docker_yum_repo_url: https://download.docker.com/linux/centos/docker-{{ docker_edition }}.repo
 
     # ==========================================================================================================
-    # Author:            geerlingguy
-    # Documentation:     https://galaxy.ansible.com/geerlingguy/java/
-    # Description:       Installation of Oracles Java Development Kit (JDK)
+    # Software:          Google Chrome
+    # Author:            cmprescott
+    # Documentation:     https://galaxy.ansible.com/cmprescott/chrome/
+    # Description:       Popular web browser by Google
     # ==========================================================================================================
-    - role: geerlingguy.java
-      java_version: '8'  # Role will download and install the jdk's latest version if you dont specify it explicitly
-      java_packages:
-        - openjdk-8-jdk
+    - role: cmprescott.chrome
+
+#**************************************************************************************************************#
+# Messenger / Chat tools                                                                                          #
+#**************************************************************************************************************#
+
 
     # ==========================================================================================================
-    # Author:            gantsign
-    # Documentation:     https://galaxy.ansible.com/gantsign/maven/
-    # Description:       Installation of Maven (build automation tool)
+    # Software:         Slack
+    # Author:           wtanaka
+    # Galaxy URL:       https://galaxy.ansible.com/wtanaka/slack/
+    # Description:      Popular messenger by Atlassian
     # ==========================================================================================================
-    - role: gantsign.maven
-      maven_version: '3.5.0'
+    - role: wtanaka.slack
+
+#**************************************************************************************************************#
+# Text editors / IDEs                                                                                          #
+#**************************************************************************************************************#
+
 
     # ==========================================================================================================
-    # Author:            gantsign
-    # Documentation:     https://galaxy.ansible.com/gantsign/postman/
-    # Description:       Installation of the popular REST Client 'Postman'
-    # ==========================================================================================================
-    - role: gantsign.postman
-
-    # ==========================================================================================================
+    # Software:          Atom
     # Author:            gantsign
     # Documentation:     https://galaxy.ansible.com/gantsign/atom/
     # Description:       Installation of the popular open-source text editor 'Atom'
@@ -93,13 +149,25 @@
             - file-icons
 
     # ==========================================================================================================
+    # Software:          Sublime Text
     # Author:            jdauphant
     # Documentation:     https://galaxy.ansible.com/jdauphant/sublimetext/
     # Description:       Installation of sublimetext3, a popular commercial editor
     # ==========================================================================================================
     - role: jdauphant.sublimetext
 
+
     # ==========================================================================================================
+    # Software:          Visual Studio Code
+    # Author:            gantsign
+    # Documentation:     https://galaxy.ansible.com/gantsign/visual-studio-code/
+    # Description:       Installation of Visual Studio Code
+    # ==========================================================================================================
+    - role: gantsign.visual-studio-code
+
+
+    # ==========================================================================================================
+    # Software:          IntelliJ
     # Author:            gantsign
     # Documentation:     https://galaxy.ansible.com/gantsign/intellij/
     # Description:       Installation of Jetbrain's popular IDE IntelliJ
@@ -108,20 +176,47 @@
     - role: gantsign.intellij
       intellij_edition: ultimate
 
-    # ==========================================================================================================
-    # Author:            gantsign
-    # Documentation:     https://galaxy.ansible.com/gantsign/keyboard/
-    # Description:       Role for configuring keyboard layout etc.
-    # ==========================================================================================================
-    - role: gantsign.keyboard
-      # European keyboard model (pc105 is widely used outside Europe as well)
-      keyboard_model: pc105
-      # Layout for Great Britain / United Kingdom
-      keyboard_layout: de
+
+
+
+
+#**************************************************************************************************************#
+# Database servers                                                                                             #
+#**************************************************************************************************************#
 
     # ==========================================================================================================
-    # Author:            gantsign
-    # Documentation:     https://galaxy.ansible.com/gantsign/visual-studio-code/
-    # Description:       Installation of Visual Studio Code
+    # Software:          MySQL
+    # Author:            geerlingguy
+    # Documentation:     https://galaxy.ansible.com/geerlingguy/mysql/
+    # Description:       Installation of MySQL database server
     # ==========================================================================================================
-    - role: gantsign.visual-studio-code
+    - role: geerlingguy.mysql
+      become: yes
+      mysql_root_home: /root
+      mysql_root_username: root
+      mysql_root_password: root
+      mysql_enabled_on_startup: yes
+
+    # ==========================================================================================================
+    # Software:          Redis
+    # Author:            DavidWittman
+    # Documentation:     https://galaxy.ansible.com/davidwittman/redis/
+    # Description:       Installation of Redis database server
+    # ==========================================================================================================
+    - role: DavidWittman.redis
+      redis_bind: 127.0.0.1
+
+
+    # ==========================================================================================================
+    # Software:          PostgreSQL
+    # Author:            geerlingguy
+    # Documentation:     https://galaxy.ansible.com/geerlingguy/postgresql/
+    # Description:       Installation of PostgreSQL database server
+    # ==========================================================================================================
+    - role: geerlingguy.postgresql
+      become: yes
+      postgresql_databases:
+        - name: example_db
+      postgresql_users:
+        - name: example_user
+          password: supersecure

@@ -3,14 +3,37 @@
 # The following Ansible-Galaxy roles will be automatically downloaded and installed if you run '$ vagrant up'
 # or '$ vagrant provision'. If you want to add another role just add it to the existing roles below.
 #
-- src: geerlingguy.git
+
+
+
+# JKDs and runtime environments
+- src: gantsign.java
 - src: geerlingguy.nodejs
-- src: geerlingguy.docker
-- src: jdauphant.sublimetext
-- src: gantsign.postman
-- src: gantsign.atom
-- src: geerlingguy.java
+
+# Build tools
 - src: gantsign.maven
+
+# Other software
+- src: geerlingguy.git
+- src: geerlingguy.docker
+- src: gantsign.postman
+
+# Messenger / Chat tools
+- src: wtanaka.slack
+
+# Text editors & IDEs
+- src: jdauphant.sublimetext
+- src: gantsign.atom
 - src: gantsign.intellij
-- src: gantsign.keyboard
 - src: gantsign.visual-studio-code
+
+# Databases
+- src: geerlingguy.mysql
+- src: geerlingguy.postgresql
+- src: DavidWittman.redis
+
+# Webserver
+- src: geerlingguy.nginx
+
+# Browser
+- src: cmprescott.chrome
