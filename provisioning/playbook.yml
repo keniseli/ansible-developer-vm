@@ -98,7 +98,7 @@
     # ==========================================================================================================
     - role: geerlingguy.docker
       docker_edition: 'ce'
-      docker_package: "docker-{{ docker_edition }}"
+      docker_package: "docker-{{ docker_edition }}-18.03.01"
       docker_package_state: latest
       docker_install_compose: true
       docker_compose_version: "1.19.0"
