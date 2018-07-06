@@ -28,7 +28,7 @@
 - src: gantsign.visual-studio-code
 
 # Databases
-- src: geerlingguy.mysql
+# - src: geerlingguy.mysql this is to be ignored (and installed with local role) until the issue https://github.com/geerlingguy/ansible-role-mysql/issues/265 is fixed.
 - src: geerlingguy.postgresql
 - src: DavidWittman.redis
 

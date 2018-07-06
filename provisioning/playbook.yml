@@ -189,6 +189,8 @@
     # Author:            geerlingguy
     # Documentation:     https://galaxy.ansible.com/geerlingguy/mysql/
     # Description:       Installation of MySQL database server
+    # Notes:             This role is not pulled from the galaxy because of an open issue with the docker
+    #                    integration. Until solved, we use the local role we fixed ourselves.
     # ==========================================================================================================
     - role: geerlingguy.mysql
       become: yes
@@ -220,3 +222,35 @@
       postgresql_users:
         - name: example_user
           password: supersecure
+
+
+  tasks:
+
+    # ==========================================================================================================
+    # Software:          MySQL Workbench
+    # Author:            Oracle
+    # Documentation:     https://www.mysql.com/products/workbench/
+    # Description:       Installation of MySQL workbench
+    # ==========================================================================================================
+   - name: install mysql workbench
+     apt:
+      name: mysql-workbench
+      state: present
+
+    # ==========================================================================================================
+    # Description:       Copying of configuration files eg. from the configuration directory into /opt/config
+    # ==========================================================================================================
+   - name: copy configuration files
+      command: cp -r /vagrant/configuration/ /opt/config
+      ignore_errors: yes
+      args:
+        creates: /opt/configuration
+
+    # ==========================================================================================================
+    # Description:       Checkout any project
+    # ==========================================================================================================
+   - name: checkout code, ignore failure on local changes
+     git:
+        repo: https://github.com/keniseli/ansible-developer-vm.git
+        dest: /home/vagrant/developer-vm
+     ignore_errors: yes
