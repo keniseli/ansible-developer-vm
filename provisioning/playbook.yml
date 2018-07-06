@@ -241,9 +241,9 @@
     # Description:       Copying of configuration files eg. from the configuration directory into /opt/config
     # ==========================================================================================================
    - name: copy configuration files
-      command: cp -r /vagrant/configuration/ /opt/config
-      ignore_errors: yes
-      args:
+     command: cp -r /vagrant/configuration/ /opt/config
+     ignore_errors: yes
+     args:
         creates: /opt/configuration
 
     # ==========================================================================================================
