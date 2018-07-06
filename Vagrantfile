@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider "docker" do |docker, override|
     override.vm.box_version = "1.0.0"
     override.vm.hostname = "testdevvm"
-    override.ssh.port = 22
+    override.ssh.port = 2222
     override.ssh.username = "vagrant"
     override.ssh.password = "vagrant"
     docker.name = "testdevvm"
