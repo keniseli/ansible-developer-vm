@@ -22,11 +22,16 @@ step() {
     echo ""
 }
 
-remove_apt_lock_if_exists () {
-    if [ ! -f /var/lib/apt/lists/lock ]; then
-        sudo rm /var/lib/apt/lists/lock
-        sudo rm /var/cache/apt/archives/lock
-        sudo rm /var/lib/dpkg/lock
+remove_locks_if_exist() {
+    step "checking and removing locks..."
+    check_and_remove_file /var/lib/apt/lists/lock
+    check_and_remove_file /var/cache/apt/archives/lock
+    check_and_remove_file /var/lib/dpkg/lock
+}
+
+check_and_remove_file() {
+    if [ -f $1 ]; then
+        rm $1
     fi
 }
 
@@ -84,7 +89,7 @@ provision() {
 # main flow
 #
 big_step "Provisioning development VM ..."
-remove_apt_lock_if_exists
+remove_locks_if_exist
 check_and_install_ansible
 check_and_install_sshpass
 install_roles_from_ansible_galaxy
